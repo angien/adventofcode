@@ -5,7 +5,6 @@ import java.util.Scanner
  * Finds the repeat total given the list of input strings
  */
 
-
 fun findFirstRepeat(inputStrings: List<String>): Int {
 	val seenTotals = mutableListOf<Int>()
 	var total = 0
@@ -47,6 +46,5 @@ fun populateInputStrings(file: File): List<String> {
 	}
 	return inputStrings
 }
-
 
 println(findFirstRepeat(populateInputStrings(getInputFile())))
