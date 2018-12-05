@@ -5,7 +5,7 @@ import java.util.Scanner
  * Gets the checksum of the input strings by multiplying total strings with 2 and 3 character repeats
  */
 
-fun getWordCounts(inputStrings: List<String>): Int {
+fun getChecksum(inputStrings: List<String>): Int {
 	var numTwos = 0
 	var numThrees = 0
 
@@ -45,4 +45,4 @@ fun getInputFile(): File {
 	return File(input)
 }
 
-println(getWordCounts(populateInputStrings()))
+println(getChecksum(populateInputStrings()))
