@@ -1,28 +1,32 @@
 import java.io.File
 import java.util.Scanner
+import java.util.Collections
 
-class Solution(val inputStrings: List<List<String>>) {
-	fun solution(): Int {
-		var depth = 0
-		var horizontal = 0
-
-		inputStrings.forEach {
-			val direction = it[0]
-			val value = it[1].toInt()
-
-			when (direction) {
-				"forward" -> horizontal += value
-				"down" -> depth += value
-				"up" -> depth -= value
-			}
+class Solution(val inputStrings: List<String>) {
+	fun solution(): Long {
+		var fish = arrayListOf<Long>(0L,0L,0L,0L,0L,0L,0L,0L,0L)
+		inputStrings[0].split(',').forEach {
+			fish[it.toInt()] += 1L
 		}
-		return depth * horizontal
+
+		for (i in 0 until 256) {
+			var newFish = fish[0]
+			Collections.rotate(fish, -1)
+			fish[6] += newFish
+		}
+
+		return fish.sum()
+	}
+
+	private infix fun Int.toward(to: Int): IntProgression {
+	    val step = if (this > to) -1 else 1
+	    return IntProgression.fromClosedRange(this, to, step)
 	}
 }
 
 /* ------------ */
 
-println(Solution(populateInputStringsAndSplit()).solution())
+println(Solution(populateInputStrings()).solution())
 
 fun populateInputStringsAndSplit(split: String = " "): List<List<String>> {
 	val inputScanner = Scanner(getInputFile())
@@ -66,8 +70,8 @@ fun populateInputStrings(): List<String> {
 fun getInputFile(): File {
 	val input = if (args.isNotEmpty() && args[0] != "") { 
 		args[0] 
-	} else { 
-		"input" 
+		} else { 
+			"input" 
+		}
+		return File(input)
 	}
-	return File(input)
-}

@@ -68,29 +68,29 @@ fun populateInputStringsAndBreaks(): List<List<String>> {
 		if (next == "") {
 			inputStrings.add(innerString)
 			innerString = mutableListOf<String>()
-			} else {
-				innerString.add(next)
-			}
+		} else {
+			innerString.add(next)
 		}
-		inputStrings.add(innerString)
-		return inputStrings
 	}
+	inputStrings.add(innerString)
+	return inputStrings
+}
 
-	fun populateInputStrings(): List<String> {
-		val inputScanner = Scanner(getInputFile())
-		val inputStrings = mutableListOf<String>()
+fun populateInputStrings(): List<String> {
+	val inputScanner = Scanner(getInputFile())
+	val inputStrings = mutableListOf<String>()
 
-		while (inputScanner.hasNextLine()) {
-			inputStrings.add(inputScanner.nextLine())
-		}
-		return inputStrings
+	while (inputScanner.hasNextLine()) {
+		inputStrings.add(inputScanner.nextLine())
 	}
+	return inputStrings
+}
 
-	fun getInputFile(): File {
-		val input = if (args.isNotEmpty() && args[0] != "") { 
-			args[0] 
-			} else { 
-				"input" 
-			}
-			return File(input)
+fun getInputFile(): File {
+	val input = if (args.isNotEmpty() && args[0] != "") { 
+		args[0] 
+		} else { 
+			"input" 
 		}
+		return File(input)
+	}

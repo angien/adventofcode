@@ -1,15 +1,15 @@
 import java.io.File
 import java.util.Scanner
 
-class Solution(val inputStrings: List<String>) {
+class Solution(val inputStrings: List<List<String>>) {
 	fun solution(): Int {
 		var depth = 0
 		var horizontal = 0
 		var aim = 0
 
 		inputStrings.forEach {
-			val direction = it.split(" ")[0]
-			val value = it.split(" ")[1].toInt()
+			val direction = it[0]
+			val value = it[1].toInt()
 			when (direction) {
 				"forward" -> {
 					horizontal += value
@@ -24,6 +24,19 @@ class Solution(val inputStrings: List<String>) {
 }
 
 /* ------------ */
+
+println(Solution(populateInputStringsAndSplit()).solution())
+
+fun populateInputStringsAndSplit(split: String = " "): List<List<String>> {
+	val inputScanner = Scanner(getInputFile())
+	val inputStrings = mutableListOf<List<String>>()
+
+	while (inputScanner.hasNextLine()) {
+		val next = inputScanner.nextLine()
+		inputStrings.add(next.split(split))
+	}
+	return inputStrings
+}
 
 fun populateInputStringsAndBreaks(): List<List<String>> {
 	val inputScanner = Scanner(getInputFile())
@@ -61,5 +74,3 @@ fun getInputFile(): File {
 	}
 	return File(input)
 }
-
-println(Solution(populateInputStrings()).solution())
