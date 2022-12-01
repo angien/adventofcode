@@ -3,7 +3,7 @@ Participating in Advent of Code for funsies
 https://adventofcode.com
 
 
-To run the scripts, use terminal:
+Unless otherwise specified in the corresponding year's README, to run the scripts, use terminal:
 
 ```
 kotlinc -script 1.kts

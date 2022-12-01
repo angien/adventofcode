@@ -1,39 +1,10 @@
+package util
+
 import java.io.File
 import java.util.Scanner
 
-/* 
- * find largest sum
- */
-
-class Solution(val inputStrings: List<List<String>>) {
-	fun solution(): Int {
-		val sorted = inputStrings.map { sumStrings(it) }.sorted().reversed()
-
-		return sorted[0]
-	}
-}
-
-/* ------------ */
-
-println(Solution(getMultipleStringsPerBreak()).solution())
-
 fun sumStrings(s: List<String>): Int {
 	return s.map { it.toInt() }.reduce { acc, it -> acc + it.toInt() }
-}
-
-/**
- * hello,world
- * hi,world
- */
-fun getMultipleStringsWithSplits(split: String = ","): List<List<String>> {
-	val inputScanner = Scanner(getInputFile())
-	val inputStrings = mutableListOf<List<String>>()
-
-	while (inputScanner.hasNextLine()) {
-		val next = inputScanner.nextLine()
-		inputStrings.add(next.split(split))
-	}
-	return inputStrings
 }
 
 /**
@@ -43,8 +14,8 @@ fun getMultipleStringsWithSplits(split: String = ","): List<List<String>> {
  * hi
  * world
  */
-fun getMultipleStringsPerBreak(): List<List<String>> {
-	val inputScanner = Scanner(getInputFile())
+fun getMultipleStringsPerBreak(args: Array<String>): List<List<String>> {
+	val inputScanner = Scanner(getInputFile(args))
 	val inputStrings = mutableListOf<List<String>>()
 	var innerString = mutableListOf<String>()
 
@@ -62,10 +33,26 @@ fun getMultipleStringsPerBreak(): List<List<String>> {
 }
 
 /**
+ * hello,world
+ * hi,world
+ */
+fun getMultipleStringsWithSplits(args: Array<String>, split: String = ","): List<List<String>> {
+	val inputScanner = Scanner(getInputFile(args))
+	val inputStrings = mutableListOf<List<String>>()
+
+	while (inputScanner.hasNextLine()) {
+		val next = inputScanner.nextLine()
+		inputStrings.add(next.split(split))
+	}
+	return inputStrings
+}
+
+
+/**
  * hello world hi world
  */
-fun getStringPerSplit(split: String = " "): List<String> {
-	return getStringPerLine()[0].split(split)
+fun getStringPerSplit(args: Array<String>, split: String = " "): List<String> {
+	return getStringPerLine(args)[0].split(split)
 }
 
 /**
@@ -74,8 +61,8 @@ fun getStringPerSplit(split: String = " "): List<String> {
  * hi
  * world
  */
-fun getStringPerLine(): List<String> {
-	val inputScanner = Scanner(getInputFile())
+fun getStringPerLine(args: Array<String>): List<String> {
+	val inputScanner = Scanner(getInputFile(args))
 	val inputStrings = mutableListOf<String>()
 
 	while (inputScanner.hasNextLine()) {
@@ -85,7 +72,7 @@ fun getStringPerLine(): List<String> {
 }
 
 // If no input specified, will use "input". If no "input" exists, will use "easy"
-fun getInputFile(): File {
+fun getInputFile(args: Array<String>): File {
 	var input = if (args.isNotEmpty() && args[0] != "") args[0] else "input"
 	if (File(input).exists().not()) {
 		input = "easy"
