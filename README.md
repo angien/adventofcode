@@ -1,6 +1,6 @@
 Participating in Advent of Code for funsies
 
-https://adventofcode.com/2018
+https://adventofcode.com
 
 
 To run the scripts, use terminal:
