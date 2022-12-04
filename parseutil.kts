@@ -1,11 +1,7 @@
-package util
+package parseutil
 
 import java.io.File
 import java.util.Scanner
-
-fun sumStrings(s: List<String>): Int {
-	return s.map { it.toInt() }.reduce { acc, it -> acc + it.toInt() }
-}
 
 /**
  * hello

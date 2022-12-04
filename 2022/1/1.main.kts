@@ -1,10 +1,7 @@
 #!/usr/bin/env kotlin
 
-@file:Import("../util.kts")
-
-import java.io.File
-import java.util.Scanner
-import util.*
+@file:Import("../../util.kts")
+@file:Import("../../parseutil.kts")
 
 /* 
  * find largest sum

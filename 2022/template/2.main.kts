@@ -4,14 +4,12 @@
 @file:Import("../../parseutil.kts")
 
 /* 
- * find top 3 sums
+ * 
  */
 
 class Solution(val inputStrings: List<List<String>>) {
 	fun solution(): Int {
-		val sorted = inputStrings.map { sumStrings(it) }.sorted().reversed()
-
-		return sorted[0] + sorted[1] + sorted[2]
+		return 0
 	}
 }
 
