@@ -22,17 +22,37 @@ fun <T> findAllCommon(vararg x: List<T>): Set<T> {
 	return result
 }
 
+// val list = mutableListOf(1,2,3,4,5,6,7,8)
+// list.removeSlice(2, 4)
+// println(list) // [1,2,6,7,8]
+fun <T> MutableList<T>.removeSlice(startInclusive: Int, endInclusive: Int) {
+    for (i in endInclusive downTo startInclusive) {
+        removeAt(i)
+    }
+}
+
+// val list = mutableListOf(1,2,3,4,5,6,7,8)
+// list.removeLast(4)
+// println(list) // [1,2,3,4]
+// list.removeLast(3)
+// println(list) // [1]
+fun <T> MutableList<T>.removeLast(count: Int) {
+    for (i in size - 1 downTo size - count) {
+        removeAt(i)
+    }
+}
+
 // val graph = listOf(
 // 	listOf("0,0", "0,1", "0,2"), 
 // 	listOf("1,0", "1,1", "1,2"), 
 // 	listOf("2,0", "2,1", "2,2"))
-// println(getSurroundingPoints(0, 0, graph))
-// println(getSurroundingPoints(1, 1, graph))
-fun <T> getSurroundingPoints(x: Int, y: Int, graph: List<List<T>>): List<T?> {
+// println(graph.getSurroundingPoints(0, 0)) // [null, null, null, null, 0,0, 0,1, null, 1,0, 1,1]
+// println(graph.getSurroundingPoints(1, 1)) // [0,0, 0,1, 0,2, 1,0, 1,1, 1,2, 2,0, 2,1, 2,2]
+fun <T> List<List<T>>.getSurroundingPoints(x: Int, y: Int): List<T?> {
 	val result = mutableListOf<T?>()
 	for (x1 in x-1 .. x+1) {
 		for (y1 in y-1 .. y+1) {
-			result += if (x1 < 0 || y1 < 0) { null } else { graph[x1][y1] }
+			result += if (x1 < 0 || y1 < 0) { null } else { this[x1][y1] }
 		}
 	}
 	return result
@@ -57,11 +77,7 @@ fun wrapIncrement(curr: Int, delta: Int = 1, startInclusive: Int = 0, endInclusi
 
 	// Adjust the delta to only be less than the range
 	val adjustedDelta = if (Math.abs(delta) > adjustedEnd + 1) {
-		if (delta < 0) {
-			(Math.abs(delta) % (adjustedEnd + 1)) * -1
-		} else {
-			Math.abs(delta) % (adjustedEnd + 1)
-		}
+		(Math.abs(delta) % (adjustedEnd + 1)) * if (delta < 0) { -1 } else { 1 }
 	} else {
 		delta
 	}
