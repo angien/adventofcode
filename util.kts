@@ -9,8 +9,10 @@ fun sumStrings(s: List<String>): Int {
 }
 
 // println(listOf("0", "1").toIntList()) // [0, 1]
+// println(listOf<String>().toIntList()) // []
+//println(listOf("").toIntList()) // []
 fun List<String>.toIntList(): List<Int> {
-	return map { it.toInt() }
+	return if (this == listOf("")) listOf() else map { it.toInt() }
 }
 
 //println(findAllCommon(listOf(1,2), listOf(2,3))) // 2
@@ -20,6 +22,20 @@ fun <T> findAllCommon(vararg x: List<T>): Set<T> {
 		result = result.intersect(it)
 	}
 	return result
+}
+
+// for (i in 3 toward 0) { println(i) }
+// for (i in 0 toward 3) { println(i) }
+infix fun Int.toward(to: Int): IntProgression {
+    val step = if (this > to) -1 else 1
+    return IntProgression.fromClosedRange(this, to, step)
+}
+
+fun gcd(x: Long, y: Long): Long {
+	if (x == 0L) {
+		return y
+	}
+	return gcd(y.mod(x), x)
 }
 
 // val list = mutableListOf(1,2,3,4,5,6,7,8)
